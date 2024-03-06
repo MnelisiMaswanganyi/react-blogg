@@ -2,9 +2,10 @@
   "development": {
     "username": "root",
     "password": "password",
-    "database": "blogDB",
+    "database": "blogdb",
     "host": "localhost",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "port": "3308"
   },
   "test": {
     "username": "root",
