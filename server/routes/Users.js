@@ -3,7 +3,7 @@ const router = express.Router();
 const { Users } = require("../models");
 const bcrypt = require("bcrypt");
 
-const {sign} = require('jsonwebtoken');
+const { sign } = require("jsonwebtoken");
 
 router.post("/", async (req, res) => {
   const { username, password } = req.body;
@@ -23,12 +23,13 @@ router.post("/login", async (req, res) => {
 
   if (!user) res.json({ error: "User Doesn't Exist" });
 
-  bcrypt.compare(password, user.password).then((match) => {
+  bcrypt.compare(password, user.password).then(async (match) => {
     if (!match) res.json({ error: "Wrong Username And Password Combination" });
 
-
-    const accessToken = sign({username: user.usernmae, id: user.id }, "importantsecret") ;
-
+    const accessToken = sign(
+      { username: user.username, id: user.id },
+      "importantsecret"
+    );
     res.json(accessToken);
   });
 });
