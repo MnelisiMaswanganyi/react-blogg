@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import CreatePost from "./pages/CreatePost";
 import Post from "./pages/Post";
@@ -9,7 +9,7 @@ import PageNotFound from "./pages/PageNotFound";
 import Profile from "./pages/Profile";
 import ChangePassword from "./pages/ChangePassword";
 
-import { AuthContext } from "./helpers/AuthContext";
+import { AuthContext } from "./helpers/AuthContext.js";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -68,7 +68,7 @@ function App() {
               {authState.status && <button onClick={logout}> Logout</button>}
             </div>
           </div>
-          <Switch>
+          <Routes>
             <Route path="/" exact component={Home} />
             <Route path="/createpost" exact component={CreatePost} />
             <Route path="/post/:id" exact component={Post} />
@@ -77,7 +77,7 @@ function App() {
             <Route path="/profile/:id" exact component={Profile} />
             <Route path="/changepassword" exact component={ChangePassword} />
             <Route path="*" exact component={PageNotFound} />
-          </Switch>
+          </Routes>
         </Router>
       </AuthContext.Provider>
     </div>
