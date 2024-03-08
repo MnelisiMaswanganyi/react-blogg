@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import { Link, useNavigate } from "react-router-dom";
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+
 import { AuthContext } from "../helpers/AuthContext";
 
 function Home() {
   const [listOfPosts, setListOfPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState([]);
   const { authState } = useContext(AuthContext);
-  let history = useHistory();
+  let history = useNavigate();
 
   useEffect(() => {
     if (!localStorage.getItem("accessToken")) {
@@ -57,7 +58,7 @@ function Home() {
         if (likedPosts.includes(postId)) {
           setLikedPosts(
             likedPosts.filter((id) => {
-              return id != postId;
+              return id !== postId;
             })
           );
         } else {
